@@ -26,3 +26,7 @@ const add=(num1,num2)=>{
     return num1 + num2;
 }
 console.log(add(2,1));
+//arguments.array like objects
+function addNum(){
+    console.log(arguments);
+}
