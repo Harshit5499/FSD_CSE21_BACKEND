@@ -17,29 +17,29 @@
 // }).catch((error) => {
 //     console.error(error.message);
 // });
-// new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         let err=false;
-//         if(!err){
-//             resolve("user:CSE21 , password:1234");
-//         }else{
-//             reject("error: user not found");
-//         }
-//     }, 1000)
-// }).then((result) => {
-//     console.log(result);
-// }).catch((error) => {
-//     console.error(error);
-// });
+ new Promise((resolve, reject) => {
+    process.nextTick(() => {
+        let err=false;
+        if(!err){
+            resolve("user:CSE21 , password:1234");
+        }else{
+            reject("error: user not found");
+        }
+    }, 1000)
+}).then((result) => {
+    console.log(result);
+}).catch((error) => {
+    console.error(error);
+});
 
 //async /await
-console.log("ths is async/await");
-async function test(){
-    console.log("1");
-    await console.log("2");
-    console.log("3");
-    console.log("4");
-    console.log("5");
-}
-test();
-console.log("6");
+// console.log("ths is async/await");
+// async function test(){
+//     console.log("1");
+//     await console.log("2");
+//     console.log("3");
+//     console.log("4");
+//     console.log("5");
+// }
+// test();
+// console.log("6");
