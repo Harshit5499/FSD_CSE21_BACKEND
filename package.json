@@ -13,7 +13,7 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "app.js",
+  "main": "Prog3.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
