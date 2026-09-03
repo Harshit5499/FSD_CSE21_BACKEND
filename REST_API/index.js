@@ -20,6 +20,13 @@ app.post('/users', (req, res) => {
     res.json
     res.status(201).json(newUser);
 });
+app.put('/users/:id', (req, res) => {
+    let user = users.find(u => u.id ==req.params.id);
+    user.name = req.body.name;
+    user.email = req.body.email;
+    res.send("User Updated Successfully");
+    res.json(user);
+})
 app.listen(3000, () => {
     console.log('Server is running on port http://localhost:3000');
 });
