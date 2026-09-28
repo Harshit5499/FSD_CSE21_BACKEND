@@ -1,25 +1,58 @@
-import express from 'express';
-import cors from 'cors';
-import fs from 'fs';
+import express from "express";
+import fs from "fs";
+import cors from "cors";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
-app.get("/products",(req,res)=>{
-    const data = fs.readFileSync("product.json","utf-8");
-    const products = JSON.parse(data);
-    res.json(products);
+
+// GET product  
+app.get("/api/product", (req, res) => {
+  const data = fs.readFileSync("product.json", "utf-8");
+
+  const product = JSON.parse(data);
+
+  res.json(product);
 });
 
-app.post("/products", (req, res) => {
-    const newProduct = req.body;
-    const data = fs.readFileSync("product.json", "utf-8");
-    const products = JSON.parse(data);
-    products.push(newProduct);
-    fs.writeFileSync("product.json", JSON.stringify(products));
-    res.status(201).json(newProduct);
+// POST product
+app.post("/api/product", (req, res) => {
+  const data = fs.readFileSync("product.json", "utf-8");
+
+  const product = JSON.parse(data);
+
+  const newProduct = {
+    id: products.length + 1,
+    name: req.body.name,
+    price: req.body.price,
+    category: req.body.category,
+  };
+
+  products.push(newProduct);
+
+  fs.writeFileSync("product.json", JSON.stringify(product, null, 2));
+
+  res.json(newProduct);
 });
 
-app.listen(4000, () => {
-    console.log('Server is running on http://localhost:4000');
+// DELETE product
+app.delete("/api/product/:id", (req, res) => {
+  const data = fs.readFileSync("product.json", "utf-8");
+
+  let product = JSON.parse(data);
+
+  const id = parseInt(req.params.id);
+
+  product = product.filter((product) => product.id !== id);
+
+  fs.writeFileSync("product.json", JSON.stringify(product, null, 2));
+
+  res.json({
+    message: "Product deleted successfully",
+  });
+});
+
+app.listen(5000, () => {
+  console.log("Server running on http://localhost:5000");
 });
