@@ -11,16 +11,16 @@ app.use(express.json());
 app.get("/api/product", (req, res) => {
   const data = fs.readFileSync("product.json", "utf-8");
 
-  const product = JSON.parse(data);
+  const products = JSON.parse(data);
 
-  res.json(product);
+  res.json(products);
 });
 
 // POST product
 app.post("/api/product", (req, res) => {
   const data = fs.readFileSync("product.json", "utf-8");
 
-  const product = JSON.parse(data);
+  const products = JSON.parse(data);
 
   const newProduct = {
     id: products.length + 1,
@@ -31,7 +31,7 @@ app.post("/api/product", (req, res) => {
 
   products.push(newProduct);
 
-  fs.writeFileSync("product.json", JSON.stringify(product, null, 2));
+  fs.writeFileSync("product.json", JSON.stringify(products, null, 2));
 
   res.json(newProduct);
 });
@@ -40,13 +40,13 @@ app.post("/api/product", (req, res) => {
 app.delete("/api/product/:id", (req, res) => {
   const data = fs.readFileSync("product.json", "utf-8");
 
-  let product = JSON.parse(data);
+  let products = JSON.parse(data);
 
   const id = parseInt(req.params.id);
 
-  product = product.filter((product) => product.id !== id);
+  products = products.filter((product) => product.id !== id);
 
-  fs.writeFileSync("product.json", JSON.stringify(product, null, 2));
+  fs.writeFileSync("product.json", JSON.stringify(products, null, 2));
 
   res.json({
     message: "Product deleted successfully",

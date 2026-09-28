@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 function App() {
 
   
-  const [product, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
